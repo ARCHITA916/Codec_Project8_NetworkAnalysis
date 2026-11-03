@@ -1,28 +1,52 @@
-# Network Traffic Analysis Using Python and Scapy
+# Network Traffic Analysis
 
 ## Project Overview
 
-This project demonstrates basic network traffic analysis using Wireshark, Python, and Scapy in Kali Linux.
+This project focuses on capturing, observing, and analysing network traffic using **Wireshark** and **Python Scapy** in Kali Linux.
 
-A network packet capture was created and examined to understand ICMP, DNS, and TCP traffic. A Python-based analyzer was developed to read the saved packet capture and extract information from TCP packets.
+The purpose of this project is to understand how different network protocols communicate and how packet information can be examined during network analysis.
 
-## Project Objectives
+## Objectives
 
-- Capture and examine network traffic.
-- Identify ICMP, DNS, and TCP protocols.
-- Understand TCP communication and connection establishment.
-- Extract source and destination IP addresses.
-- Identify source and destination port numbers.
-- Examine TCP flags.
-- Generate a text-based packet analysis report.
+- Capture and analyse network packets using Wireshark.
+- Observe ICMP communication using ping.
+- Examine DNS queries and responses.
+- Analyse TCP packets and connection details.
+- Understand packet headers, IP addresses, ports, and TCP flags.
+- Use Python Scapy to read and analyse a saved packet capture.
 
 ## Tools and Technologies
 
-- Kali Linux
-- Wireshark
-- Python 3
-- Scapy
-- Nano Text Editor
+- **Operating System:** Kali Linux
+- **Packet Analysis Tool:** Wireshark
+- **Programming Language:** Python 3
+- **Python Library:** Scapy
+- **Network Interface:** eth0
+
+## Protocols Analysed
+
+### 1. ICMP
+Used the ping command to generate ICMP traffic and examined ICMP request and reply packets in Wireshark.
+
+### 2. DNS
+Used `nslookup` to generate DNS traffic and inspected DNS queries and responses, including their packet details.
+
+### 3. TCP
+Generated TCP traffic using an HTTPS request and examined TCP packets, SYN flags, connection details, and a TCP stream in Wireshark.
+
+## Python Packet Analyzer
+
+A Python script named `network_analyzer.py` was developed using Scapy.
+
+The script reads a saved packet capture and extracts information from IPv4 and TCP packets, including:
+
+- Source IP address
+- Destination IP address
+- Source port
+- Destination port
+- TCP flags
+- Total packet count
+- TCP packet count
 
 ## Project Structure
 
@@ -30,9 +54,9 @@ A network packet capture was created and examined to understand ICMP, DNS, and T
 project8_NetworkAnalysis/
 │
 ├── network_analyzer.py
-├── tcp_capture.pcapng
 ├── tcp_analysis.txt
 ├── README.md
+├── .gitignore
 │
 └── screenshots/
     ├── 01_interface_Installation.png
@@ -44,52 +68,70 @@ project8_NetworkAnalysis/
     ├── 07_TCP_SYN_Analysis.png
     ├── 08_TCP_Stream.png
     ├── 09_TCP_Packet_Details.png
-    └── 10_Network Analysis.png
+    └── 10_Network_Analysis.png
 ```
 
-## Python Analyzer Features
+**Note:** The original PCAPNG capture file is excluded from this repository for privacy. To run the Python analyzer, provide your own capture file named `tcp_capture.pcapng` in the project directory.
 
-The Python program uses Scapy to:
+## Installation and Usage
 
-1. Read a saved PCAPNG file.
-2. Identify packets containing IPv4 and TCP layers.
-3. Extract source and destination IP addresses.
-4. Extract source and destination ports.
-5. Display TCP flags for each identified packet.
+### 1. Install Scapy
 
-## Analysis Results
+```bash
+pip install scapy
+```
 
-The captured file contained:
+### 2. Provide a Packet Capture
 
-- Total packets captured: **40**
-- Total TCP packets identified: **35**
+Place your own Wireshark capture file named:
 
-The analysis also showed TCP communication over destination port 443.
+```text
+tcp_capture.pcapng
+```
 
-## How to Run
+in the project directory.
 
-Install Python 3 and Scapy, then open the project directory.
-
-Run:
+### 3. Run the Python Analyzer
 
 ```bash
 python3 network_analyzer.py
 ```
 
-To save the output:
+### 4. Save the Analysis Output
 
 ```bash
 python3 network_analyzer.py > tcp_analysis.txt
 ```
 
+## Screenshots and Documentation
+
+The `screenshots` folder contains evidence of the practical work, including:
+
+- Wireshark interface and packet capture
+- ICMP packet analysis
+- DNS lookup and packet analysis
+- TCP SYN packet analysis
+- TCP stream inspection
+- TCP packet details
+- Overall network analysis
+
+The `tcp_analysis.txt` file contains a summary of the packet analysis performed using Python.
+
 ## Learning Outcomes
 
-- Understanding basic network packet analysis.
-- Identifying common network protocols.
-- Understanding TCP flags and connection establishment.
-- Learning to use Wireshark for packet inspection.
-- Using Python and Scapy to examine packet captures.
+Through this project, I gained practical experience in:
 
-## Author
+- Understanding basic network traffic.
+- Identifying ICMP, DNS, and TCP packets.
+- Using Wireshark display filters.
+- Examining packet headers and protocol details.
+- Reading packet captures using Python Scapy.
+- Documenting network analysis results.
 
-B.Sc. Computer Science with Cyber Security Student
+## Project Limitations
+
+This project demonstrates basic packet capture and protocol analysis. It does not implement automated malware detection, intrusion detection, or advanced anomaly detection.
+
+## Conclusion
+
+This project provided practical exposure to network traffic analysis using Wireshark and Python Scapy. It helped strengthen my understanding of network protocols, packet structures, and basic traffic inspection techniques.
