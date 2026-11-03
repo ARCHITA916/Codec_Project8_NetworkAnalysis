@@ -1,0 +1,11 @@
+# Raw packet captures
+*.pcap
+*.pcapng
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Temporary editor files
+*.save
+*~

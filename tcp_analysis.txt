@@ -1,0 +1,40 @@
+TCP NETWORK ANALYSIS REPORT
+===========================
+
+Project: Network Traffic Analysis Using Python and Scapy
+
+Analysis Summary
+----------------
+Total packets captured: 40
+Total TCP packets identified: 35
+
+Protocol Details
+----------------
+Protocol: TCP
+Destination service port: 443 (HTTPS)
+
+TCP Flags Observed
+------------------
+S  - SYN
+SA - SYN-ACK
+A  - ACK
+PA - PSH-ACK
+FA - FIN-ACK
+
+Key Observation
+---------------
+The captured traffic demonstrates TCP connection
+establishment, data transfer, and connection
+termination.
+
+Tools Used
+----------
+Kali Linux
+Python 3
+Scapy
+Wireshark
+
+Note:
+This report contains summarized results.
+IP addresses and individual packet details
+have been omitted for privacy.
