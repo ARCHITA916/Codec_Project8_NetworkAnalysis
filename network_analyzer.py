@@ -5,37 +5,50 @@ from scapy.all import rdpcap, IP, TCP, UDP
 tcp_packets = rdpcap("tcp_capture.pcapng")
 udp_packets = rdpcap("udp_capture.pcapng")
 
-# Count TCP and UDP packets
-tcp_count = sum(
-    1 for packet in tcp_packets
-    if packet.haslayer(IP) and packet.haslayer(TCP)
-)
+# Combine packets from both separate captures
+all_packets = list(tcp_packets) + list(udp_packets)
+
+# Count protocols across all captured packets
+tcp_count = sum(1 for packet in all_packets if packet.haslayer(TCP))
 
 udp_count = sum(
-    1 for packet in udp_packets
-    if packet.haslayer(IP) and packet.haslayer(UDP)
+    1 for packet in all_packets
+    if packet.haslayer(UDP) and not packet.haslayer(TCP)
 )
 
+other_count = len(all_packets) - tcp_count - udp_count
+
+total_captured = len(all_packets)
+
 # Display analysis
-print("===============================")
-print("     NETWORK TRAFFIC ANALYZER")
-print("===============================")
+print("================================")
+print("      NETWORK TRAFFIC ANALYZER")
+print("================================")
 
-print("\nTCP ANALYSIS")
-print("-------------------------------")
-print("Total TCP capture packets:", len(tcp_packets))
-print("TCP packets identified:", tcp_count)
+print("\nCAPTURE SUMMARY")
+print("--------------------------------")
+print("Packets in TCP capture:", len(tcp_packets))
+print("Packets in UDP capture:", len(udp_packets))
+print("Total packets analysed:", total_captured)
 
-print("\nUDP ANALYSIS")
-print("-------------------------------")
-print("Total UDP capture packets:", len(udp_packets))
-print("UDP packets identified:", udp_count)
+print("\nPROTOCOL STATISTICS")
+print("--------------------------------")
+print("TCP packets:", tcp_count)
+print("UDP packets:", udp_count)
+print("Other packets:", other_count)
 
-# Display UDP packet details
+if total_captured > 0:
+    print("\nPROTOCOL DISTRIBUTION")
+    print("--------------------------------")
+    print("TCP:", round(tcp_count / total_captured * 100, 2), "%")
+    print("UDP:", round(udp_count / total_captured * 100, 2), "%")
+    print("Other:", round(other_count / total_captured * 100, 2), "%")
+
+# Display UDP packet details from both captures
 print("\nUDP PACKET DETAILS")
-print("-------------------------------")
+print("--------------------------------")
 
-for number, packet in enumerate(udp_packets, start=1):
+for number, packet in enumerate(all_packets, start=1):
     if packet.haslayer(IP) and packet.haslayer(UDP):
         ip = packet[IP]
         udp = packet[UDP]
@@ -45,21 +58,5 @@ for number, packet in enumerate(udp_packets, start=1):
         print("Destination IP:", ip.dst)
         print("Source Port:", udp.sport)
         print("Destination Port:", udp.dport)
-# Combined Protocol Statistics
-print("\nCOMBINED PROTOCOL STATISTICS")
-print("-------------------------------")
 
-total_captured = len(tcp_packets) + len(udp_packets)
-
-print("Total packets from both captures:", total_captured)
-print("TCP packets identified:", tcp_count)
-print("UDP packets identified:", udp_count)
-
-print("\nProtocol Distribution")
-print("-------------------------------")
-
-tcp_percentage = (tcp_count / total_captured) * 100
-udp_percentage = (udp_count / total_captured) * 100
-
-print("TCP:", round(tcp_percentage, 2), "%")
-print("UDP:", round(udp_percentage, 2), "%")
+print("\nAnalysis completed.")
