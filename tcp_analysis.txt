@@ -1,40 +1,72 @@
-TCP NETWORK ANALYSIS REPORT
-===========================
+
+NETWORK TRAFFIC ANALYSIS REPORT
+================================
 
 Project: Network Traffic Analysis Using Python and Scapy
 
-Analysis Summary
-----------------
-Total packets captured: 40
-Total TCP packets identified: 35
+1. PROJECT OVERVIEW
+-------------------
+This project captures and analyses network traffic
+using Wireshark, Kali Linux, Python and Scapy.
 
-Protocol Details
-----------------
-Protocol: TCP
-Destination service port: 443 (HTTPS)
+2. TCP ANALYSIS
+---------------
+Total packets in TCP capture: 40
+TCP packets identified: 35
 
-TCP Flags Observed
-------------------
+Destination service port observed: 443 (HTTPS)
+
+TCP flags observed:
 S  - SYN
 SA - SYN-ACK
 A  - ACK
 PA - PSH-ACK
 FA - FIN-ACK
 
-Key Observation
+3. UDP ANALYSIS
 ---------------
-The captured traffic demonstrates TCP connection
-establishment, data transfer, and connection
-termination.
+Total packets in UDP capture: 40
+UDP packets identified: 33
 
-Tools Used
-----------
-Kali Linux
-Python 3
-Scapy
-Wireshark
+UDP traffic observed:
+- DNS communication (port 53)
+- Traceroute probes (destination port 33434)
 
-Note:
-This report contains summarized results.
-IP addresses and individual packet details
-have been omitted for privacy.
+4. COMBINED PROTOCOL STATISTICS
+-------------------------------
+Total packets across both captures: 80
+
+TCP packets: 35 (43.75%)
+UDP packets: 33 (41.25%)
+Other packets: 12 (15%)
+
+Note: These statistics combine two separate captures.
+
+5. KEY OBSERVATIONS
+-------------------
+- TCP traffic demonstrated connection establishment,
+  data transfer and connection termination.
+- DNS queries and responses used UDP.
+- Traceroute generated UDP probes.
+- Some captured packets used protocols other than
+  TCP and UDP.
+
+6. TOOLS USED
+-------------
+- Kali Linux
+- Wireshark
+- Python 3
+- Scapy
+
+7. LIMITATIONS
+--------------
+This project performs basic packet analysis and
+protocol identification.
+
+It does not currently implement malware detection,
+intrusion detection or advanced anomaly detection.
+
+8. PRIVACY NOTE
+---------------
+Raw packet captures are stored locally and are not
+included in the public GitHub repository.
