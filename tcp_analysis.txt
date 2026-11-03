@@ -70,3 +70,29 @@ intrusion detection or advanced anomaly detection.
 ---------------
 Raw packet captures are stored locally and are not
 included in the public GitHub repository.
+
+
+9. HTTPS AND TLS ANALYSIS
+-------------------------
+HTTPS traffic was captured using Wireshark while
+accessing https://example.com.
+
+Analysis Results:
+- Total packets in TLS capture: 39
+- Packets displayed using TLS filter: 12
+- Protocol observed: TLS 1.3
+- Client Hello message: Identified
+- Server Hello message: Identified
+- Encrypted Application Data: Identified
+- Server Name Indication (SNI): example.com
+
+Key Observations:
+- Client Hello initiated the TLS handshake.
+- Server Hello indicated the server response.
+- Application Data packets carried encrypted traffic.
+- TLS provides confidentiality for application data.
+
+Note:
+The encrypted application contents were not
+inspected or decrypted.
+These results come from a separate TLS capture.
